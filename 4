@@ -1,0 +1,33 @@
+class MyQueue:
+
+    def __init__(self):
+        self.stack_push = []
+        self.stack_pop = []
+
+    def push(self, x):
+        self.stack_push.append(x)
+
+    def pop(self):
+        if not self.stack_pop:
+            self.transfer_elements()
+        return self.stack_pop.pop()
+
+    def peek(self):
+        if not self.stack_pop:
+            self.transfer_elements()
+        return self.stack_pop[-1]
+
+    def empty(self):
+        return not self.stack_push and not self.stack_pop
+
+    def transfer_elements(self):
+        while self.stack_push:
+            self.stack_pop.append(self.stack_push.pop())
+
+# Приклад
+myQueue = MyQueue()
+myQueue.push(1)
+myQueue.push(2)
+print(myQueue.peek())  # Виведе: 1
+print(myQueue.pop())   # Виведе: 1
+print(myQueue.empty()) # Виведе: False
